@@ -41,8 +41,7 @@ typedef struct liststr
 {
 	int num;
 	char *str;
-	struct liststr;
-*next;
+	struct liststr *next;
 } list_t;
 /**
  * struct passinfo - contains pseudo arguements to pass into a function
@@ -70,7 +69,7 @@ typedef struct passinfo
 {
 	char **cmd_buf;
 	int cmd_buf_type;
-	int resdfd;
+	int readfd;
 	int histcount;
 	char *arg;
 	char **argv;
@@ -84,11 +83,10 @@ typedef struct passinfo
 	list_t *alias;
 	unsigned int line_count;
 	int err_num;
-	int linecount_flog;
-	char *env;
+	int linecount_flag;
+	char *fname;
 } info_t;
-#define INFO_INT\
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+#define INFO_INIT \ {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
 /**
@@ -99,20 +97,20 @@ typedef struct passinfo
 typedef struct builtin
 {
 	char *type;
-	int (*func)(info_t*);
+	int (*func)(info_t *);
 } builtin_table;
 /*string_fun*/
-int _len(char *s);
-int _cmp(char *s1, char *s2);
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
 char *_with(const char *haystack, const char *needle);
 char *_cat(char *dest, char *src);
 /*string*/
-char *_cpy(char *dest, char *src);
-char *_dup(const char *str);
-void _puts(char *str);
-int _putchar(char c);
+int _putchar(char);
+void _puts(char *);
+char *_strdup(const char *);
+char *_strcpy(char *, char *);
 /*string1.c*/
-char *_stcpy(char *dest, char *src, int n);
+char *_strcp(char *dest, char *src, int n);
 char *_stcat(char *dest, char *src, int n);
 char *_stchr(char *s, char c);
 /*string2*/
