@@ -114,6 +114,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	size_t k;
 	ssize_t r = 0, s = 0;
 	char *p = NULL, *new_p = NULL, *c;
+
 	p = *ptr;
 
 	if (p && length)

@@ -22,7 +22,8 @@ int unset_alias(info_t *info, char *str)
 	char *p, c;
 	int ret;
 
-	p = _strchr(str, '='); 	if (!p)
+	p = _strchr(str, '=');
+	if (!p)
 		return (1);
 	c = *p;
 	*p = 0;
@@ -48,7 +49,7 @@ int set_alias(info_t *info, char *str)
 		return (unset_alias(info, str));
 	unset_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
-} 
+}
 /**
  * print_alias - prints an alias string
  * @node: the alias node
@@ -57,6 +58,7 @@ int set_alias(info_t *info, char *str)
 int print_alias(list_t *node)
 {
 	char *p = NULL, *a = NULL;
+
 	if (node)
 	{
 		p = _strchr(node->str, '=');
@@ -73,7 +75,7 @@ int print_alias(list_t *node)
  * _myalias - mimics the alias builtin (man alias)
  * @info: Structure containing potential arguments. Used to maintain
  * constant function prototype.
- * Return: Always 0 
+ * Return: Always 0
  */
 int _myalias(info_t *info)
 {

@@ -26,6 +26,7 @@ int _eputchar(char c)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
+
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(2, buf, i);
@@ -41,7 +42,7 @@ int _eputchar(char c)
  * @fd: The filedescriptor to write to
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
- * */
+ */
 int _putfd(char c, int fd)
 {
 	static int i;
